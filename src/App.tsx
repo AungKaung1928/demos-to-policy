@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { rows, source } from './data/valloss'
+import { CompoundChapter } from './CompoundChapter'
 import { LanguageChapter } from './LanguageChapter'
 import { SeedsChapter } from './SeedsChapter'
 import { LangContext, initialLang, saveLang } from './i18n'
@@ -27,6 +28,7 @@ const T = {
     lang: 'Language',
     contents: 'Chapters',
     toc: [
+      ['compound', 'Small mistakes compound'],
       ['valloss', 'Validation loss lies'],
       ['seeds', 'One seed is an anecdote'],
       ['language', 'An ablation with no power'],
@@ -51,12 +53,16 @@ const T = {
     lang: '表示言語',
     contents: '章',
     toc: [
+      ['compound', '小さなミスは積み重なる'],
       ['valloss', '検証ロスはうそをつく'],
       ['seeds', 'シード 1 つは逸話にすぎない'],
       ['language', '検出力のないアブレーション'],
     ],
   },
 }
+
+// Chapter numbers as printed on each chapter; chapter 2 is not built yet.
+const CHAPTER: Record<string, number> = { compound: 1, valloss: 3, seeds: 4, language: 5 }
 
 const OUTPUT = { en: ['1 action', 'chunk of 20 actions'], ja: ['1 アクション', '20 アクションのチャンク'] }
 
@@ -87,18 +93,18 @@ export default function App() {
             ))}
           </div>
         </header>
-        {/* chapters 1-2 are not built yet, so the list starts at 3 to match the chapter eyebrows */}
         <nav aria-label={t.contents}>
-          <ol className="toc" style={{ counterReset: 'ch 2' }}>
+          <ol className="toc">
             {t.toc.map(([id, label]) => (
-              <li key={id}>
+              <li key={id} style={{ counterSet: `ch ${CHAPTER[id]}` }}>
                 <a href={`#${id}`}>{label}</a>
               </li>
             ))}
           </ol>
         </nav>
         <main>
-          <section className="intro" id="valloss">
+          <CompoundChapter />
+          <section className="intro chapter-break" id="valloss">
             <p className="eyebrow">{t.eyebrow}</p>
             <h1>{t.title}</h1>
             <p>{t.intro}</p>
