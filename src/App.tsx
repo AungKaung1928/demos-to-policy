@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { rows, source } from './data/valloss'
+import { ChunkChapter } from './ChunkChapter'
 import { CompoundChapter } from './CompoundChapter'
 import { LanguageChapter } from './LanguageChapter'
 import { SeedsChapter } from './SeedsChapter'
@@ -29,6 +30,7 @@ const T = {
     contents: 'Chapters',
     toc: [
       ['compound', 'Small mistakes compound'],
+      ['chunk', 'Predict a chunk'],
       ['valloss', 'Validation loss lies'],
       ['seeds', 'One seed is an anecdote'],
       ['language', 'An ablation with no power'],
@@ -54,15 +56,13 @@ const T = {
     contents: '章',
     toc: [
       ['compound', '小さなミスは積み重なる'],
+      ['chunk', 'チャンクで予測する'],
       ['valloss', '検証ロスはうそをつく'],
       ['seeds', 'シード 1 つは逸話にすぎない'],
       ['language', '検出力のないアブレーション'],
     ],
   },
 }
-
-// Chapter numbers as printed on each chapter; chapter 2 is not built yet.
-const CHAPTER: Record<string, number> = { compound: 1, valloss: 3, seeds: 4, language: 5 }
 
 const OUTPUT = { en: ['1 action', 'chunk of 20 actions'], ja: ['1 アクション', '20 アクションのチャンク'] }
 
@@ -96,7 +96,7 @@ export default function App() {
         <nav aria-label={t.contents}>
           <ol className="toc">
             {t.toc.map(([id, label]) => (
-              <li key={id} style={{ counterSet: `ch ${CHAPTER[id]}` }}>
+              <li key={id}>
                 <a href={`#${id}`}>{label}</a>
               </li>
             ))}
@@ -104,6 +104,7 @@ export default function App() {
         </nav>
         <main>
           <CompoundChapter />
+          <ChunkChapter />
           <section className="intro chapter-break" id="valloss">
             <p className="eyebrow">{t.eyebrow}</p>
             <h1>{t.title}</h1>
