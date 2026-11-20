@@ -522,3 +522,24 @@ td.fail {
 td.num {
   white-space: nowrap;
 }
+
+/* Chapter 4: seven choices wrap instead of overflowing on a phone */
+.seg.seg-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.seg.seg-wrap button,
+.seg.seg-wrap button + button {
+  border-left: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+}
+
+.seg.seg-wrap button[aria-pressed='true'] {
+  border-color: var(--accent);
+}
+
+.bar.dim {
+  background: var(--hairline-strong);
+}
