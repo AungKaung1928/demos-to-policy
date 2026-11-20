@@ -3,15 +3,14 @@
 // Val L1 is on normalised actions, final epoch.
 export interface Row {
   policy: string
-  output: string
   valL1: number
   success: number
   successSd: number
 }
 
 export const rows: Row[] = [
-  { policy: 'ImagePolicy', output: '1 action', valL1: 0.0339, success: 0.05, successSd: 0.02 },
-  { policy: 'ACTLite', output: 'chunk of 20 actions', valL1: 0.1229, success: 0.77, successSd: 0.05 },
+  { policy: 'ImagePolicy', valL1: 0.0339, success: 0.05, successSd: 0.02 },
+  { policy: 'ACTLite', valL1: 0.1229, success: 0.77, successSd: 0.05 },
 ]
 
 export const source = { label: 'so-arm100-il README, results', ref: 'github.com/AungKaung1928/so-arm100-il' }
