@@ -25,6 +25,12 @@ const T = {
     caveat:
       'Simulated SO-100 arm, nominal physics, 100 episodes × 5 evaluation seeds, one training seed per policy; val L1 on normalised actions, final epoch. The two losses come from different output heads, so they are not on exactly the same footing; the ranking flip is the point, not the ratio.',
     lang: 'Language',
+    contents: 'Chapters',
+    toc: [
+      ['valloss', 'Validation loss lies'],
+      ['seeds', 'One seed is an anecdote'],
+      ['language', 'An ablation with no power'],
+    ],
   },
   ja: {
     eyebrow: '第 3 章',
@@ -43,6 +49,12 @@ const T = {
     caveat:
       'シミュレーションの SO-100 アーム、標準の物理、100 エピソード × 評価シード 5、方策ごとに学習シード 1。検証 L1 は正規化したアクションでの最終エポックの値です。2 つのロスは出力ヘッドが異なるため厳密には同じ土俵ではありません。大事なのは比ではなく順位の逆転です。',
     lang: '表示言語',
+    contents: '章',
+    toc: [
+      ['valloss', '検証ロスはうそをつく'],
+      ['seeds', 'シード 1 つは逸話にすぎない'],
+      ['language', '検出力のないアブレーション'],
+    ],
   },
 }
 
@@ -75,6 +87,16 @@ export default function App() {
             ))}
           </div>
         </header>
+        {/* chapters 1-2 are not built yet, so the list starts at 3 to match the chapter eyebrows */}
+        <nav aria-label={t.contents}>
+          <ol className="toc" style={{ counterReset: 'ch 2' }}>
+            {t.toc.map(([id, label]) => (
+              <li key={id}>
+                <a href={`#${id}`}>{label}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
         <main>
           <section className="intro" id="valloss">
             <p className="eyebrow">{t.eyebrow}</p>
