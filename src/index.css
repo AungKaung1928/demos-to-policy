@@ -543,3 +543,26 @@ td.num {
 .bar.dim {
   background: var(--hairline-strong);
 }
+
+/* Chapter 5: ± sd whisker drawn over the bar */
+.bar-sd {
+  position: absolute;
+  top: 50%;
+  height: 0;
+  border-top: 2px solid var(--ink);
+  z-index: 1;
+}
+
+.bars.wide-value li {
+  grid-template-columns: minmax(0, 16rem) minmax(0, 1fr) 9rem;
+}
+
+.bars.wide-value .bar-value {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .bars.wide-value li {
+    grid-template-columns: minmax(0, 1fr) 8.5rem;
+  }
+}

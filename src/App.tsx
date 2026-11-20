@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { rows, source } from './data/valloss'
+import { LanguageChapter } from './LanguageChapter'
 import { SeedsChapter } from './SeedsChapter'
 import { LangContext, initialLang, saveLang } from './i18n'
 import type { Lang } from './i18n'
@@ -148,6 +149,7 @@ export default function App() {
             </p>
           </section>
           <SeedsChapter />
+          <LanguageChapter />
         </main>
       </div>
     </LangContext.Provider>
